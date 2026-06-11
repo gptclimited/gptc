@@ -78,7 +78,7 @@ export function Hero({
 
       <Container className="relative flex min-h-[max(36rem,78dvh)] flex-col py-12 sm:min-h-[36rem] sm:py-14 lg:min-h-[40rem] lg:py-24">
         {breadcrumb ? <div className="mb-6 sm:mb-8">{breadcrumb}</div> : null}
-        <div className="flex w-full max-w-2xl flex-1 flex-col justify-center">
+        <div className="flex w-full max-w-2xl flex-1 flex-col justify-start pt-16 sm:justify-center sm:pt-0">
           <motion.div
             className="flex flex-col gap-5 sm:gap-6 lg:gap-8"
             initial="hidden"
@@ -129,7 +129,7 @@ export function Hero({
             {(primaryCta || secondaryCta) && (
               <motion.div
                 variants={heroItem}
-                className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:gap-4 sm:pt-0"
+                className="mt-40 flex flex-col gap-3 pt-1 sm:mt-0 sm:flex-row sm:flex-wrap sm:gap-4 sm:pt-0"
               >
                 {primaryCta ? (
                   <ButtonLink
