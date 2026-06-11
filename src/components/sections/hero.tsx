@@ -76,7 +76,7 @@ export function Hero({
         </>
       )}
 
-      <Container className="relative flex min-h-[26rem] flex-col py-10 sm:min-h-[32rem] sm:py-14 lg:min-h-[40rem] lg:py-24">
+      <Container className="relative flex min-h-[max(36rem,78dvh)] flex-col py-12 sm:min-h-[36rem] sm:py-14 lg:min-h-[40rem] lg:py-24">
         {breadcrumb ? <div className="mb-6 sm:mb-8">{breadcrumb}</div> : null}
         <div className="flex w-full max-w-2xl flex-1 flex-col justify-center">
           <motion.div
