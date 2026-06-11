@@ -1,0 +1,247 @@
+[
+  {
+    "slug": "student-recruitment",
+    "title": "Student Recruitment",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "college-admissions",
+    "title": "College Admissions",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "university-admissions",
+    "title": "University Admissions",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "graduate-school-admissions",
+    "title": "Graduate School Admissions",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "program-matching",
+    "title": "Program Matching",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "education-pathway-planning",
+    "title": "Education Pathway Planning",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "academic-counseling",
+    "title": "Academic Counseling",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "career-pathway-development",
+    "title": "Career Pathway Development",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "transfer-pathways",
+    "title": "Transfer Pathways",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "scholarship-support",
+    "title": "Scholarship Support",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "study-permit-support",
+    "title": "Study Permit Support",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "pre-departure-services",
+    "title": "Pre-Departure Services",
+    "category": "Educational Consulting"
+  },
+  {
+    "slug": "newcomer-integration",
+    "title": "Newcomer Integration",
+    "category": "Newcomer Integration"
+  },
+  {
+    "slug": "settlement-support",
+    "title": "Settlement Support",
+    "category": "Newcomer Integration"
+  },
+  {
+    "slug": "cultural-orientation",
+    "title": "Cultural Orientation",
+    "category": "Newcomer Integration"
+  },
+  {
+    "slug": "cross-cultural-training",
+    "title": "Cross-Cultural Training",
+    "category": "Newcomer Integration"
+  },
+  {
+    "slug": "employment-readiness",
+    "title": "Employment Readiness",
+    "category": "Newcomer Integration"
+  },
+  {
+    "slug": "community-engagement",
+    "title": "Community Engagement",
+    "category": "Newcomer Integration"
+  },
+  {
+    "slug": "leadership-development",
+    "title": "Leadership Development",
+    "category": "Leadership Development"
+  },
+  {
+    "slug": "youth-leadership-academy",
+    "title": "Youth Leadership Academy",
+    "category": "Leadership Development"
+  },
+  {
+    "slug": "governance-development",
+    "title": "Governance Development",
+    "category": "Leadership Development"
+  },
+  {
+    "slug": "ethical-leadership",
+    "title": "Ethical Leadership",
+    "category": "Leadership Development"
+  },
+  {
+    "slug": "public-speaking-training",
+    "title": "Public Speaking Training",
+    "category": "Leadership Development"
+  },
+  {
+    "slug": "reconciliation-training",
+    "title": "Reconciliation Training",
+    "category": "Peacebuilding & Reconciliation"
+  },
+  {
+    "slug": "peacebuilding-workshops",
+    "title": "Peacebuilding Workshops",
+    "category": "Peacebuilding & Reconciliation"
+  },
+  {
+    "slug": "conflict-resolution-training",
+    "title": "Conflict Resolution Training",
+    "category": "Peacebuilding & Reconciliation"
+  },
+  {
+    "slug": "restorative-justice",
+    "title": "Restorative Justice",
+    "category": "Peacebuilding & Reconciliation"
+  },
+  {
+    "slug": "community-healing-dialogues",
+    "title": "Community Healing Dialogues",
+    "category": "Peacebuilding & Reconciliation"
+  },
+  {
+    "slug": "personal-development",
+    "title": "Personal Development",
+    "category": "Holistic Development"
+  },
+  {
+    "slug": "emotional-intelligence-training",
+    "title": "Emotional Intelligence Training",
+    "category": "Holistic Development"
+  },
+  {
+    "slug": "mental-wellness-training",
+    "title": "Mental Wellness Training",
+    "category": "Holistic Development"
+  },
+  {
+    "slug": "goal-setting-life-planning",
+    "title": "Goal Setting & Life Planning",
+    "category": "Holistic Development"
+  },
+  {
+    "slug": "family-enrichment",
+    "title": "Family Enrichment",
+    "category": "Holistic Development"
+  },
+  {
+    "slug": "biblical-studies",
+    "title": "Biblical Studies",
+    "category": "Biblical & Theological Studies"
+  },
+  {
+    "slug": "theological-education",
+    "title": "Theological Education",
+    "category": "Biblical & Theological Studies"
+  },
+  {
+    "slug": "christian-leadership-development",
+    "title": "Christian Leadership Development",
+    "category": "Biblical & Theological Studies"
+  },
+  {
+    "slug": "church-leadership-workshops",
+    "title": "Church Leadership Workshops",
+    "category": "Biblical & Theological Studies"
+  },
+  {
+    "slug": "digital-literacy",
+    "title": "Digital Literacy",
+    "category": "Digital Skills"
+  },
+  {
+    "slug": "artificial-intelligence-awareness",
+    "title": "Artificial Intelligence Awareness",
+    "category": "Digital Skills"
+  },
+  {
+    "slug": "research-technology-skills",
+    "title": "Research Technology Skills",
+    "category": "Digital Skills"
+  },
+  {
+    "slug": "online-learning-success",
+    "title": "Online Learning Success",
+    "category": "Digital Skills"
+  },
+  {
+    "slug": "educational-research",
+    "title": "Educational Research",
+    "category": "Research & Policy"
+  },
+  {
+    "slug": "community-needs-assessment",
+    "title": "Community Needs Assessment",
+    "category": "Research & Policy"
+  },
+  {
+    "slug": "policy-development",
+    "title": "Policy Development",
+    "category": "Research & Policy"
+  },
+  {
+    "slug": "program-evaluation",
+    "title": "Program Evaluation",
+    "category": "Research & Policy"
+  },
+  {
+    "slug": "entrepreneurship-training",
+    "title": "Entrepreneurship Training",
+    "category": "Entrepreneurship"
+  },
+  {
+    "slug": "business-development-mentoring",
+    "title": "Business Development Mentoring",
+    "category": "Entrepreneurship"
+  },
+  {
+    "slug": "financial-literacy",
+    "title": "Financial Literacy",
+    "category": "Entrepreneurship"
+  },
+  {
+    "slug": "social-enterprise-development",
+    "title": "Social Enterprise Development",
+    "category": "Entrepreneurship"
+  }
+]
