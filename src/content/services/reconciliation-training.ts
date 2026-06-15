@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const reconciliationTraining: ServicePage = {
   slug: "reconciliation-training",
+  subsidiary: "gpn",
   title: "Reconciliation Training",
   category: "Peacebuilding & Reconciliation",
   metaTitle: "Reconciliation Training Programs | GTN",

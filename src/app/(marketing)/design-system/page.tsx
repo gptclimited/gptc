@@ -8,6 +8,9 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { CtaBanner } from "@/components/sections/cta-banner";
+import { LogoMeaningSection } from "@/components/sections/logo-meaning";
+// import { LogoUsageSection } from "@/components/sections/logo-usage";
+import { TypographySection } from "@/components/sections/typography-system";
 import { FeatureGrid } from "@/components/sections/feature-grid";
 import { Hero } from "@/components/sections/hero";
 import { StatCounter } from "@/components/sections/stat-counter";
@@ -19,7 +22,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = generatePageMetadata({
   title: "Design System",
   description:
-    "GTN brand colors, typography, and UI components for client review during development.",
+    "GPTC brand colors, logo meaning, typography, and UI components for client review during development.",
   path: "/design-system",
   noIndex: true,
 });
@@ -29,7 +32,7 @@ export default function DesignSystemPage() {
     <main id="main-content" className="flex flex-1 flex-col">
       <PageHeader
         title="Design System"
-        description="Brand colors, typography, and core UI patterns for client review. This page is for development reference and will remain available throughout the build."
+        description="Brand colors, logo meaning, typography, and core UI patterns for client review. This page is for development reference and will remain available throughout the build."
         breadcrumb={
           <Breadcrumbs
             items={[
@@ -59,6 +62,14 @@ export default function DesignSystemPage() {
           </div>
         </Container>
       </Section>
+
+      <LogoMeaningSection />
+
+      {/* Logo sizing and placement — restore when final logo assets are ready.
+      <LogoUsageSection />
+      */}
+
+      <TypographySection />
 
       <Section background="muted">
         <Container>

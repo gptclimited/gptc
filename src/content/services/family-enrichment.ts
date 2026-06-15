@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const familyEnrichment: ServicePage = {
   slug: "family-enrichment",
+  subsidiary: "gtn",
   title: "Family Enrichment",
   category: "Holistic Development",
   metaTitle: "Family Enrichment Programs | Global Training Network",

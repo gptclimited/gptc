@@ -6,25 +6,33 @@ import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { ServiceCard } from "@/components/sections/service-card";
+import { getServicePath, getSubsidiaryServicesPath } from "@/lib/services/paths";
 import { categoryToAnchor } from "@/lib/services/utils";
+import type { SubsidiarySlug } from "@/lib/subsidiaries";
 import type { ServicePage } from "@/types/service";
 import { serviceCategories } from "@/types/service";
 import { cn } from "@/lib/utils";
 
 type ServicesHubProps = {
   services: ServicePage[];
+  subsidiary?: SubsidiarySlug;
 };
 
-export function ServicesHub({ services }: ServicesHubProps) {
+export function ServicesHub({ services, subsidiary }: ServicesHubProps) {
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
+  const categories = useMemo(() => {
+    const used = new Set(services.map((s) => s.category));
+    return serviceCategories.filter((c) => used.has(c));
+  }, [services]);
+
   const grouped = useMemo(() => {
-    return serviceCategories.map((category) => ({
+    return categories.map((category) => ({
       category,
       anchor: categoryToAnchor(category),
       services: services.filter((service) => service.category === category),
     }));
-  }, [services]);
+  }, [services, categories]);
 
   const filteredGroups =
     activeCategory === "all"
@@ -43,7 +51,7 @@ export function ServicesHub({ services }: ServicesHubProps) {
               onClick={() => setActiveCategory("all")}
               label="All Services"
             />
-            {serviceCategories.map((category) => (
+            {categories.map((category) => (
               <FilterButton
                 key={category}
                 active={activeCategory === category}
@@ -77,7 +85,7 @@ export function ServicesHub({ services }: ServicesHubProps) {
                   key={service.slug}
                   title={service.title}
                   description={service.hero.subheadline}
-                  href={`/${service.slug}`}
+                  href={getServicePath(service)}
                 />
               ))}
             </div>

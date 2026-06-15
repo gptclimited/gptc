@@ -95,7 +95,7 @@ export function AboutPreview({ mission, vision, founderQuote }: AboutPreviewProp
 
         <FadeInView className="flex justify-center">
           <ButtonLink href="/about" variant="outline" size="lg" analyticsLabel="about_preview">
-            Learn more about GTN
+            Learn more about us
           </ButtonLink>
         </FadeInView>
       </Container>

@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const theologicalEducation: ServicePage = {
   slug: "theological-education",
+  subsidiary: "gtn",
   title: "Theological Education",
   category: "Biblical & Theological Studies",
   metaTitle: "Theological Education & Training Programs | Global Training Network",

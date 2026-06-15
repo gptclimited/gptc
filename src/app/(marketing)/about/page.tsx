@@ -10,12 +10,12 @@ import { LeadershipTeam } from "@/components/sections/leadership-team";
 import { PageHeader } from "@/components/layout/page-header";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { aboutConfig } from "@/config/about";
-import { siteConfig } from "@/lib/constants";
+import { ecosystemConfig } from "@/lib/subsidiaries";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "About Us",
-  description: `Learn about ${siteConfig.name} — our story, mission, vision, values, and leadership team.`,
+  description: `Learn about the ${ecosystemConfig.name} — our story, mission, vision, values, and leadership.`,
   path: "/about",
 });
 

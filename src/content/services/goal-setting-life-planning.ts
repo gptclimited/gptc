@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const goalSettingLifePlanning: ServicePage = {
   slug: "goal-setting-life-planning",
+  subsidiary: "gtn",
   title: "Goal Setting & Life Planning",
   category: "Holistic Development",
   metaTitle: "Goal Setting & Life Planning Workshops | GTN",

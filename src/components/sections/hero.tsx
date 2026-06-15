@@ -7,16 +7,24 @@ import { motion } from "framer-motion";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { defaultViewport } from "@/lib/motion/constants";
 import { heroContainer, heroItem } from "@/lib/motion/variants";
+import { AnimatedMotto } from "@/components/motion/animated-motto";
+import { HeroBackgroundSlider } from "@/components/motion/hero-background-slider";
 import type { CtaLink, ImageAsset } from "@/config/types";
+import type { HeroSlide } from "@/components/motion/hero-background-slider";
 
 type HeroProps = {
   eyebrow?: string;
   headline: string;
+  /** When set, renders a continuously animated motto instead of a static headline. */
+  animatedPhrases?: readonly string[];
   subheadline: string;
   primaryCta?: CtaLink;
   secondaryCta?: CtaLink;
   backgroundImage?: ImageAsset;
+  /** Crossfading hero backgrounds — used on the ecosystem homepage (max 4 recommended). */
+  backgroundSlides?: readonly HeroSlide[];
   backgroundPosition?: string;
   imageCaption?: { name: string; title: string };
   trustBadges?: readonly string[];
@@ -26,10 +34,12 @@ type HeroProps = {
 export function Hero({
   eyebrow,
   headline,
+  animatedPhrases,
   subheadline,
   primaryCta,
   secondaryCta,
   backgroundImage,
+  backgroundSlides,
   backgroundPosition = "center",
   imageCaption,
   trustBadges,
@@ -41,7 +51,19 @@ export function Hero({
       spacing="none"
       className="relative overflow-hidden border-b border-border"
     >
-      {backgroundImage ? (
+      {backgroundSlides && backgroundSlides.length > 0 ? (
+        <>
+          <HeroBackgroundSlider slides={backgroundSlides} />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-r from-gtn-primary/92 from-0% via-gtn-primary/45 via-45% to-transparent to-85%"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-b from-gtn-primary/25 via-transparent to-transparent"
+          />
+        </>
+      ) : backgroundImage ? (
         <>
           <Image
             src={backgroundImage.src}
@@ -82,13 +104,14 @@ export function Hero({
           <motion.div
             className="flex flex-col gap-5 sm:gap-6 lg:gap-8"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={defaultViewport}
             variants={heroContainer}
           >
             {eyebrow ? (
               <motion.p
                 variants={heroItem}
-                className="inline-flex w-fit max-w-full items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white backdrop-blur-sm sm:px-4 sm:py-1.5 sm:text-sm"
+                className="inline-flex w-fit max-w-full items-center rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[0.6875rem] leading-tight font-medium uppercase tracking-wide text-white backdrop-blur-sm max-[380px]:text-[0.625rem] max-[380px]:tracking-normal sm:px-4 sm:py-1.5 sm:text-sm sm:leading-normal sm:tracking-wider"
               >
                 {eyebrow}
               </motion.p>
@@ -98,8 +121,13 @@ export function Hero({
               <motion.h1
                 variants={heroItem}
                 className="text-[1.65rem] leading-[1.15] text-white drop-shadow-[0_2px_8px_rgba(11,60,93,0.5)] sm:text-3xl sm:leading-tight md:text-4xl lg:text-[2.75rem]"
+                {...(animatedPhrases ? { "aria-label": headline } : {})}
               >
-                {headline}
+                {animatedPhrases ? (
+                  <AnimatedMotto phrases={animatedPhrases} />
+                ) : (
+                  headline
+                )}
               </motion.h1>
               <motion.p
                 variants={heroItem}

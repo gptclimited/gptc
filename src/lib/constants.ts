@@ -1,29 +1,17 @@
+import { ecosystemConfig, subsidiaries } from "@/lib/subsidiaries";
+
+/** @deprecated Use ecosystemConfig for root-level branding */
 export const siteConfig = {
-  name: "Global Training Network",
-  shortName: "GTN",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://globaltrainingnetwork.org",
-  description:
-    "Guiding learners and leaders from aspiration to achievement through consulting, training, mentorship, and educational pathways.",
-  tagline:
-    "Empowering students, newcomers, families, and communities through education and transformation.",
-  contact: {
-    address: {
-      street: "19897 82 Avenue",
-      city: "Langley",
-      province: "BC",
-      postalCode: "V2Y 1Y7",
-      country: "Canada",
-    },
-    phone: "604-727-6553",
-    email: "info@globaltrainingnetwork.org",
-  },
-  social: {
-    linkedin: "#",
-    facebook: "#",
-    instagram: "#",
-    youtube: "#",
-  },
+  name: ecosystemConfig.name,
+  shortName: ecosystemConfig.shortName,
+  url: ecosystemConfig.url,
+  description: ecosystemConfig.description,
+  tagline: ecosystemConfig.motto,
+  contact: ecosystemConfig.contact,
+  social: ecosystemConfig.social,
 } as const;
+
+export { ecosystemConfig, subsidiaries, subsidiaryList } from "@/lib/subsidiaries";
 
 export const mainNav = [
   { label: "Home", href: "/" },
@@ -31,6 +19,12 @@ export const mainNav = [
   { label: "Services", href: "/services" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
+] as const;
+
+export const organizationNav = [
+  { label: "Global Peacebuilding Network", href: "/gpn", shortName: "GPN" },
+  { label: "Global Training Network", href: "/gtn", shortName: "GTN" },
+  { label: "Amani Care Services", href: "/acs", shortName: "ACS" },
 ] as const;
 
 export const consultationHref = "/contact?type=consultation";
@@ -44,21 +38,31 @@ export const footerQuickLinks = [
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
   { label: "Partner With Us", href: partnershipHref },
-  { label: "Design System", href: "/design-system" },
+] as const;
+
+export const footerOrganizationLinks = [
+  { label: "Global Peacebuilding Network", href: "/gpn" },
+  { label: "Global Training Network", href: "/gtn" },
+  { label: "Amani Care Services", href: "/acs" },
 ] as const;
 
 export const footerServiceLinks = [
-  { label: "College Admissions", href: "/college-admissions" },
-  { label: "Newcomer Integration", href: "/newcomer-integration" },
-  { label: "Leadership Development", href: "/leadership-development" },
-  { label: "Digital Literacy", href: "/digital-literacy" },
-  { label: "Educational Research", href: "/educational-research" },
-  { label: "Entrepreneurship Training", href: "/entrepreneurship-training" },
+  { label: "College Admissions", href: "/gtn/college-admissions" },
+  { label: "Peacebuilding Workshops", href: "/gpn/peacebuilding-workshops" },
+  { label: "Newcomer Integration", href: "/acs/newcomer-integration" },
+  { label: "Leadership Development", href: "/gtn/leadership-development" },
+  { label: "Employment Services", href: "/acs/employment-services" },
+  { label: "Train-the-Trainer Academy", href: "/gtn/train-the-trainer-academy" },
 ] as const;
 
 export type MainNavItem = (typeof mainNav)[number];
 
 export function formatAddress() {
-  const { street, city, province, postalCode } = siteConfig.contact.address;
+  const { street, city, province, postalCode } = ecosystemConfig.contact.address;
   return `${street}, ${city}, ${province} ${postalCode}`;
+}
+
+export function getConsultationHref(subsidiary?: keyof typeof subsidiaries) {
+  if (!subsidiary) return consultationHref;
+  return `/contact?type=consultation&org=${subsidiary}`;
 }

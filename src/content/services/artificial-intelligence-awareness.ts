@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const artificialIntelligenceAwareness: ServicePage = {
   slug: "artificial-intelligence-awareness",
+  subsidiary: "gtn",
   title: "Artificial Intelligence Awareness",
   category: "Digital Skills",
   metaTitle: "Artificial Intelligence Awareness Training | Global Training Network",

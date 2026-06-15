@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const studyPermitSupport: ServicePage = {
   slug: "study-permit-support",
+  subsidiary: "gtn",
   title: "Study Permit Support",
   category: "Educational Consulting",
   metaTitle: "Study Permit Support for Canada | GTN",

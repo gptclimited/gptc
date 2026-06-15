@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const crossCulturalTraining: ServicePage = {
   slug: "cross-cultural-training",
+  subsidiary: "acs",
   title: "Cross-Cultural Training",
   category: "Newcomer Integration",
   metaTitle: "Cross-Cultural Training for Newcomers & Teams | Global Training Network",

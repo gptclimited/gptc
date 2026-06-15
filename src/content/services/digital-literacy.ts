@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const digitalLiteracy: ServicePage = {
   slug: "digital-literacy",
+  subsidiary: "gtn",
   title: "Digital Literacy",
   category: "Digital Skills",
   metaTitle: "Digital Literacy Training for Students & Communities | Global Training Network",

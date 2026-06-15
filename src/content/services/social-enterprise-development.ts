@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const socialEnterpriseDevelopment: ServicePage = {
   slug: "social-enterprise-development",
+  subsidiary: "gtn",
   title: "Social Enterprise Development",
   category: "Entrepreneurship",
   metaTitle: "Social Enterprise Development | Global Training Network",

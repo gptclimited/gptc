@@ -1,3 +1,5 @@
+import type { SubsidiarySlug } from "@/lib/subsidiaries";
+
 export const serviceCategories = [
   "Educational Consulting",
   "Newcomer Integration",
@@ -8,12 +10,19 @@ export const serviceCategories = [
   "Digital Skills",
   "Research & Policy",
   "Entrepreneurship",
+  "Peacebuilding Programs",
+  "Peacebuilding Workshops",
+  "Peacebuilding Initiatives",
+  "Care Programs",
+  "Employment & Staffing",
+  "Settlement & Integration",
 ] as const;
 
 export type ServiceCategory = (typeof serviceCategories)[number];
 
 export interface ServicePage {
   slug: string;
+  subsidiary: SubsidiarySlug;
   title: string;
   category: ServiceCategory;
   metaTitle: string;

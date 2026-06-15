@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/layout/logo";
 import {
   consultationHref,
+  footerOrganizationLinks,
   footerQuickLinks,
   footerServiceLinks,
   formatAddress,
@@ -30,10 +31,9 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-gtn-primary text-white">
       <Container className="py-16 lg:py-20">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-8">
           <div className="flex flex-col items-center space-y-4 text-center md:items-start md:text-left">
             <Logo variant="inverted" />
-            <p className="max-w-xs text-sm leading-relaxed text-white/80">{siteConfig.tagline}</p>
             <div className="flex justify-center gap-3 md:justify-start">
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <Link
@@ -46,6 +46,12 @@ export function SiteFooter() {
                 </Link>
               ))}
             </div>
+            <Link
+              href="/design-system"
+              className="text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:underline"
+            >
+              Design System
+            </Link>
           </div>
 
           <div className="text-center md:text-left">
@@ -68,7 +74,25 @@ export function SiteFooter() {
 
           <div className="text-center md:text-left">
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/90">
-              Services
+              Organizations
+            </h2>
+            <ul className="space-y-3">
+              {footerOrganizationLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:underline"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="text-center md:text-left">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/90">
+              Featured Services
             </h2>
             <ul className="space-y-3">
               {footerServiceLinks.map((item) => (

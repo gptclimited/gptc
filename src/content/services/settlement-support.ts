@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const settlementSupport: ServicePage = {
   slug: "settlement-support",
+  subsidiary: "acs",
   title: "Settlement Support",
   category: "Newcomer Integration",
   metaTitle: "Settlement Support for Newcomers in Canada | Global Training Network",

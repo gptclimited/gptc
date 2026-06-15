@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const christianLeadershipDevelopment: ServicePage = {
   slug: "christian-leadership-development",
+  subsidiary: "gtn",
   title: "Christian Leadership Development",
   category: "Biblical & Theological Studies",
   metaTitle: "Christian Leadership Development Programs | Global Training Network",

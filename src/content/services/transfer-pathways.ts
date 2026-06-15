@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const transferPathways: ServicePage = {
   slug: "transfer-pathways",
+  subsidiary: "gtn",
   title: "Transfer Pathways",
   category: "Educational Consulting",
   metaTitle: "College to University Transfer Pathways | GTN",

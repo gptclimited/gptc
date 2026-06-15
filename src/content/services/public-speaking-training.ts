@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const publicSpeakingTraining: ServicePage = {
   slug: "public-speaking-training",
+  subsidiary: "gtn",
   title: "Public Speaking Training",
   category: "Leadership Development",
   metaTitle: "Public Speaking Training & Presentation Skills | Global Training Network",

@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const financialLiteracy: ServicePage = {
   slug: "financial-literacy",
+  subsidiary: "gtn",
   title: "Financial Literacy",
   category: "Entrepreneurship",
   metaTitle: "Financial Literacy Training | Global Training Network",

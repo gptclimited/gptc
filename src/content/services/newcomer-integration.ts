@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const newcomerIntegration: ServicePage = {
   slug: "newcomer-integration",
+  subsidiary: "acs",
   title: "Newcomer Integration",
   category: "Newcomer Integration",
   metaTitle: "Newcomer Integration Services in Canada | Global Training Network",

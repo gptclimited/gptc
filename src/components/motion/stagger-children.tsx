@@ -10,15 +10,17 @@ import { cn } from "@/lib/utils";
 type StaggerChildrenProps = {
   children: ReactNode;
   className?: string;
+  /** When true, stagger animation replays each time the block enters the viewport. */
+  replay?: boolean;
 };
 
-export function StaggerChildren({ children, className }: StaggerChildrenProps) {
+export function StaggerChildren({ children, className, replay = true }: StaggerChildrenProps) {
   return (
     <motion.div
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
-      viewport={defaultViewport}
+      viewport={{ ...defaultViewport, once: !replay }}
       variants={staggerContainer}
     >
       {children}

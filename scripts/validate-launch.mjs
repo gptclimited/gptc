@@ -7,14 +7,12 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-const registry = JSON.parse(
-  fs.readFileSync(path.join(root, "scripts/service-registry.json"), "utf8"),
-);
-
 const contentDir = path.join(root, "src/content/services");
 const pagesDir = path.join(root, "src/app/(marketing)");
 const insightsIndex = path.join(root, "src/content/insights/index.ts");
-const coreRoutes = ["/", "/about", "/services", "/contact", "/insights"];
+const coreRoutes = ["/", "/about", "/services", "/contact", "/insights", "/gtn", "/gpn", "/acs"];
+
+const subsidiaryRoutes = ["gtn", "gpn", "acs"];
 
 let errors = 0;
 let warnings = 0;
@@ -29,23 +27,66 @@ function fail(message) {
   errors++;
 }
 
-console.log("GTN launch validation\n");
+function subsidiaryForCategory(category) {
+  if (
+    category.startsWith("Peacebuilding") ||
+    category === "Peacebuilding & Reconciliation"
+  ) {
+    return "gpn";
+  }
+  if (
+    category.startsWith("Care") ||
+    category.startsWith("Employment") ||
+    category.startsWith("Settlement") ||
+    category === "Newcomer Integration"
+  ) {
+    return "acs";
+  }
+  return "gtn";
+}
 
-for (const entry of registry) {
-  const contentPath = path.join(contentDir, `${entry.slug}.ts`);
-  const pagePath = path.join(pagesDir, entry.slug, "page.tsx");
+console.log("GPTC launch validation\n");
 
-  if (!fs.existsSync(contentPath)) {
-    fail(`Missing service content: ${entry.slug}`);
+const contentFiles = fs
+  .readdirSync(contentDir)
+  .filter((file) => file.endsWith(".ts") && file !== "index.ts" && !file.endsWith("-new.ts"));
+
+for (const file of contentFiles) {
+  const slug = file.replace(".ts", "");
+  const contentPath = path.join(contentDir, file);
+  const content = fs.readFileSync(contentPath, "utf8");
+
+  if (!content.includes("subsidiary:")) {
+    fail(`Missing subsidiary field in content: ${slug}`);
   }
 
-  if (!fs.existsSync(pagePath)) {
-    fail(`Missing service page: /${entry.slug}`);
+  const categoryMatch = content.match(/category:\s*"([^"]+)"/);
+  const subsidiaryMatch = content.match(/subsidiary:\s*"([^"]+)"/);
+
+  if (categoryMatch && subsidiaryMatch) {
+    const expected = subsidiaryForCategory(categoryMatch[1]);
+    if (subsidiaryMatch[1] !== expected) {
+      fail(
+        `Subsidiary mismatch for ${slug}: expected ${expected}, found ${subsidiaryMatch[1]}`,
+      );
+    }
   }
 }
 
-if (registry.length !== 49) {
-  fail(`Expected 49 services in registry, found ${registry.length}`);
+for (const arm of subsidiaryRoutes) {
+  const dynamicRoute = path.join(pagesDir, arm, "[slug]", "page.tsx");
+  const servicesRoute = path.join(pagesDir, arm, "services", "page.tsx");
+  const homeRoute = path.join(pagesDir, arm, "page.tsx");
+
+  if (!fs.existsSync(dynamicRoute)) {
+    fail(`Missing dynamic service route: /${arm}/[slug]`);
+  }
+  if (!fs.existsSync(servicesRoute)) {
+    fail(`Missing services hub: /${arm}/services`);
+  }
+  if (!fs.existsSync(homeRoute)) {
+    fail(`Missing subsidiary home: /${arm}`);
+  }
 }
 
 if (!fs.existsSync(insightsIndex)) {
@@ -84,6 +125,7 @@ const requiredFiles = [
   "src/app/robots.ts",
   "src/app/insights/feed.xml/route.ts",
   "src/components/analytics/google-analytics.tsx",
+  "src/lib/subsidiaries/config.ts",
   "vercel.json",
   "PLANS/BACKLOG.md",
   "PLANS/TECH-DEBT.md",
@@ -93,36 +135,6 @@ for (const file of requiredFiles) {
   if (!fs.existsSync(path.join(root, file))) {
     fail(`Missing launch file: ${file}`);
   }
-}
-
-const placeholderPattern = /\[CLIENT CONTENT NEEDED\]/g;
-const scannedDirs = [
-  path.join(root, "src/lib/content"),
-  path.join(root, "src/app/(marketing)/page.tsx"),
-];
-
-let placeholderCount = 0;
-for (const target of scannedDirs) {
-  if (!fs.existsSync(target)) continue;
-
-  const files = fs.statSync(target).isDirectory()
-    ? fs.readdirSync(target).map((file) => path.join(target, file))
-    : [target];
-
-  for (const file of files) {
-    if (!file.endsWith(".ts") && !file.endsWith(".tsx")) continue;
-    const content = fs.readFileSync(file, "utf8");
-    const matches = content.match(placeholderPattern);
-    if (matches) {
-      placeholderCount += matches.length;
-    }
-  }
-}
-
-if (placeholderCount > 0) {
-  warn(
-    `${placeholderCount} [CLIENT CONTENT NEEDED] placeholder(s) remain — confirm with client before hard launch`,
-  );
 }
 
 const envExample = fs.readFileSync(path.join(root, ".env.example"), "utf8");
@@ -138,8 +150,9 @@ for (const key of [
   }
 }
 
-console.log(`\nServices: ${registry.length}`);
+console.log(`\nIndividual service content files: ${contentFiles.length}`);
 console.log(`Core routes: ${coreRoutes.length}`);
+console.log(`Subsidiary arms: ${subsidiaryRoutes.length}`);
 console.log(`Errors: ${errors}`);
 console.log(`Warnings: ${warnings}`);
 

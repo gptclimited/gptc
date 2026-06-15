@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const mentalWellnessTraining: ServicePage = {
   slug: "mental-wellness-training",
+  subsidiary: "gtn",
   title: "Mental Wellness Training",
   category: "Holistic Development",
   metaTitle: "Mental Wellness Training Programs | GTN",

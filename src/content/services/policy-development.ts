@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const policyDevelopment: ServicePage = {
   slug: "policy-development",
+  subsidiary: "gtn",
   title: "Policy Development",
   category: "Research & Policy",
   metaTitle: "Policy Development Services | Global Training Network",

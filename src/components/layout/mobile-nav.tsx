@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/layout/logo";
-import { consultationHref, mainNav } from "@/lib/constants";
+import { consultationHref, mainNav, organizationNav } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
 
@@ -49,11 +49,17 @@ export function MobileNav() {
       <SheetContent side="right" className="w-full max-w-sm p-0">
         <SheetHeader className="border-b border-border px-6 py-5 text-left">
           <SheetTitle className="sr-only">Navigation menu</SheetTitle>
-          <Logo />
+          <Logo variant="compact" />
         </SheetHeader>
         <nav className="flex flex-1 flex-col gap-1 px-4 py-6" aria-label="Mobile">
           {mainNav.map((item) => (
             <NavLink key={item.href} href={item.href} label={item.label} />
+          ))}
+          <p className="mt-4 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Our Organizations
+          </p>
+          {organizationNav.map((item) => (
+            <NavLink key={item.href} href={item.href} label={item.shortName} />
           ))}
         </nav>
         <div className="mt-auto border-t border-border p-4">
@@ -75,7 +81,31 @@ export function MobileNav() {
 export function DesktopNav() {
   return (
     <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-      {mainNav.map((item) => (
+      {mainNav.slice(0, 2).map((item) => (
+        <NavLink key={item.href} href={item.href} label={item.label} />
+      ))}
+      <div className="group relative">
+        <button
+          type="button"
+          className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-haspopup="true"
+        >
+          Organizations
+        </button>
+        <div className="invisible absolute left-0 top-full z-50 min-w-56 rounded-xl border border-border bg-background p-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+          {organizationNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <span className="font-medium text-foreground">{item.shortName}</span>
+              <span className="mt-0.5 block text-xs">{item.label}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+      {mainNav.slice(2).map((item) => (
         <NavLink key={item.href} href={item.href} label={item.label} />
       ))}
     </nav>

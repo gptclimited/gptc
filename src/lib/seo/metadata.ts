@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/lib/constants";
+import { ecosystemConfig, getSubsidiary } from "@/lib/subsidiaries";
+import { getServicePath } from "@/lib/services/paths";
 import { seoConfig } from "@/lib/seo/constants";
 import type { PageMetaInput } from "@/lib/seo/types";
 import type { InsightArticle } from "@/types/insight";
@@ -13,7 +15,8 @@ export function generatePageMetadata({
   ogImage,
   absoluteTitle = false,
   noIndex = false,
-}: PageMetaInput): Metadata {
+  siteName,
+}: PageMetaInput & { siteName?: string }): Metadata {
   const url = `${siteConfig.url}${path}`;
   const image = ogImage ?? seoConfig.defaultOgImagePath;
 
@@ -26,7 +29,7 @@ export function generatePageMetadata({
       title,
       description,
       url,
-      siteName: siteConfig.name,
+      siteName: siteName ?? siteConfig.name,
       locale: seoConfig.locale,
       type: "website",
       images: [
@@ -48,17 +51,19 @@ export function generatePageMetadata({
 }
 
 export function generateServiceMetadata(service: ServicePage): Metadata {
+  const org = getSubsidiary(service.subsidiary);
   return generatePageMetadata({
     title: service.metaTitle,
     description: service.metaDescription,
-    path: `/${service.slug}`,
+    path: getServicePath(service),
+    siteName: org.name,
   });
 }
 
 export function generateHomeMetadata(): Metadata {
   return generatePageMetadata({
-    title: `${siteConfig.name} | Guiding Learners and Leaders to Achievement`,
-    description: siteConfig.description,
+    title: `${ecosystemConfig.shortName} | ${ecosystemConfig.motto}`,
+    description: ecosystemConfig.description,
     path: "/",
     absoluteTitle: true,
   });
@@ -70,5 +75,21 @@ export function generateArticleMetadata(article: InsightArticle): Metadata {
     description: article.metaDescription,
     path: `/insights/${article.slug}`,
     ogImage: article.coverImage,
+  });
+}
+
+export function generateSubsidiaryMetadata(
+  subsidiary: keyof typeof import("@/lib/subsidiaries").subsidiaries,
+  path: string,
+  title: string,
+  description: string,
+): Metadata {
+  const org = getSubsidiary(subsidiary);
+  return generatePageMetadata({
+    title,
+    description,
+    path,
+    absoluteTitle: true,
+    siteName: org.name,
   });
 }

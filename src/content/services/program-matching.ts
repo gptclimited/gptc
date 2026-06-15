@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const programMatching: ServicePage = {
   slug: "program-matching",
+  subsidiary: "gtn",
   title: "Program Matching",
   category: "Educational Consulting",
   metaTitle: "Program Matching for Students in Canada | GTN",

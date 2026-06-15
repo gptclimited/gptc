@@ -5,6 +5,7 @@ import { StaggerChildren, StaggerItem } from "@/components/motion/stagger-childr
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { ServiceCard } from "@/components/sections/service-card";
+import { getServicePath, getSubsidiaryServicesPath } from "@/lib/services/paths";
 import { categoryToAnchor } from "@/lib/services/utils";
 import type { ServicePage } from "@/types/service";
 import { cn } from "@/lib/utils";
@@ -12,11 +13,18 @@ import { cn } from "@/lib/utils";
 type ServiceRelatedProps = {
   title: string;
   category: string;
+  subsidiary: ServicePage["subsidiary"];
   relatedServices: ServicePage[];
 };
 
-export function ServiceRelated({ title, category, relatedServices }: ServiceRelatedProps) {
+export function ServiceRelated({
+  title,
+  category,
+  subsidiary,
+  relatedServices,
+}: ServiceRelatedProps) {
   const lastRowOffset = relatedServices.length % 3 === 2;
+  const servicesHref = getSubsidiaryServicesPath(subsidiary);
 
   return (
     <Section background="muted">
@@ -36,7 +44,7 @@ export function ServiceRelated({ title, category, relatedServices }: ServiceRela
           <p className="text-sm text-muted-foreground">
             Browse more in{" "}
             <Link
-              href={`/services#${categoryToAnchor(category)}`}
+              href={`${servicesHref}#${categoryToAnchor(category)}`}
               className="font-medium text-gtn-secondary transition-colors hover:text-gtn-primary"
             >
               {category}
@@ -68,7 +76,7 @@ export function ServiceRelated({ title, category, relatedServices }: ServiceRela
                   <ServiceCard
                     title={related.title}
                     description={related.hero.subheadline}
-                    href={`/${related.slug}`}
+                    href={getServicePath(related)}
                     variant="featured"
                     accent={accent}
                   />

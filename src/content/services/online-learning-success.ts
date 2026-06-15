@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const onlineLearningSuccess: ServicePage = {
   slug: "online-learning-success",
+  subsidiary: "gtn",
   title: "Online Learning Success",
   category: "Digital Skills",
   metaTitle: "Online Learning Success Strategies & Coaching | Global Training Network",

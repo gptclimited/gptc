@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLdScript } from "@/components/seo/json-ld-script";
-import { siteConfig } from "@/lib/constants";
+import { ecosystemConfig } from "@/lib/subsidiaries";
 import { seoConfig } from "@/lib/seo/constants";
 import { buildOrganizationSchema } from "@/lib/seo/json-ld";
 
@@ -18,16 +18,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(ecosystemConfig.url),
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: ecosystemConfig.name,
+    template: `%s | ${ecosystemConfig.shortName}`,
   },
-  description: siteConfig.description,
+  description: ecosystemConfig.description,
   openGraph: {
     type: "website",
     locale: seoConfig.locale,
-    siteName: siteConfig.name,
+    siteName: ecosystemConfig.name,
   },
   twitter: {
     card: "summary_large_image",

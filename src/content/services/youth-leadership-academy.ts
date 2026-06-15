@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const youthLeadershipAcademy: ServicePage = {
   slug: "youth-leadership-academy",
+  subsidiary: "gtn",
   title: "Youth Leadership Academy",
   category: "Leadership Development",
   metaTitle: "Youth Leadership Academy & Programs | Global Training Network",

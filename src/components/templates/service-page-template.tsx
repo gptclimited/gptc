@@ -70,6 +70,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
         <ServiceRelated
           title={service.title}
           category={service.category}
+          subsidiary={service.subsidiary}
           relatedServices={relatedServices}
         />
       ) : null}

@@ -6,10 +6,10 @@ import { consultationHref } from "@/lib/constants";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-[4.5rem] lg:px-8">
-        <Logo />
-        <DesktopNav />
-        <div className="flex items-center gap-3">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
+        <Logo priority className="min-w-0" />
+        <div className="flex shrink-0 items-center gap-3">
+          <DesktopNav />
           <ButtonLink
             href={consultationHref}
             variant="accent"

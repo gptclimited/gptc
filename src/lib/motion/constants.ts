@@ -7,7 +7,7 @@ export const motionDurations = {
 export const motionEase = [0.22, 1, 0.36, 1] as const;
 
 export const defaultViewport = {
-  once: true,
+  once: false,
   amount: 0.15,
 } as const;
 

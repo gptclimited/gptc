@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const collegeAdmissions: ServicePage = {
   slug: "college-admissions",
+  subsidiary: "gtn",
   title: "College Admissions",
   category: "Educational Consulting",
   metaTitle: "College Admissions Support in Canada | Global Training Network",

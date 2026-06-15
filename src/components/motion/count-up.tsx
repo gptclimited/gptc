@@ -35,12 +35,17 @@ function formatAnimatedValue(original: number | string, current: number): string
 
 export function CountUp({ value, className }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
   const numericTarget = parseNumericValue(value);
-  const [animatedValue, setAnimatedValue] = useState<number | null>(null);
+  const [animatedValue, setAnimatedValue] = useState(0);
 
   useEffect(() => {
-    if (!isInView || numericTarget === null) {
+    if (numericTarget === null) {
+      return;
+    }
+
+    if (!isInView) {
+      setAnimatedValue(0);
       return;
     }
 
@@ -54,11 +59,7 @@ export function CountUp({ value, className }: CountUpProps) {
   }, [isInView, numericTarget]);
 
   const display =
-    numericTarget === null
-      ? String(value)
-      : animatedValue === null
-        ? String(value)
-        : formatAnimatedValue(value, animatedValue);
+    numericTarget === null ? String(value) : formatAnimatedValue(value, animatedValue);
 
   return (
     <span ref={ref} className={cn(className)}>

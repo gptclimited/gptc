@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const ethicalLeadership: ServicePage = {
   slug: "ethical-leadership",
+  subsidiary: "gtn",
   title: "Ethical Leadership",
   category: "Leadership Development",
   metaTitle: "Ethical Leadership Training & Programs | Global Training Network",

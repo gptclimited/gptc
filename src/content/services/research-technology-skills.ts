@@ -2,6 +2,7 @@ import type { ServicePage } from "@/types/service";
 
 export const researchTechnologySkills: ServicePage = {
   slug: "research-technology-skills",
+  subsidiary: "gtn",
   title: "Research Technology Skills",
   category: "Digital Skills",
   metaTitle: "Research Technology Skills Training | Global Training Network",

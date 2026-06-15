@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 type SectionProps = ComponentProps<"section"> & {
   spacing?: "default" | "compact" | "none";
-  background?: "default" | "muted" | "white";
+  background?: "default" | "muted" | "white" | "primary";
 };
 
 const spacingClasses = {
@@ -17,6 +17,7 @@ const backgroundClasses = {
   default: "bg-background",
   muted: "bg-gtn-neutral-50",
   white: "bg-white",
+  primary: "bg-gtn-primary text-white",
 };
 
 export function Section({
