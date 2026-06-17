@@ -9,11 +9,11 @@ export const aboutConfig = {
       "Global Peacebuilding, Training and Care Ecosystem—three organizations united by one mission to promote human dignity and social transformation.",
   },
 
-  ourStory: `The Global Peacebuilding, Training and Care Ecosystem (GPTC) brings together three specialized organizations under one shared vision: to equip leaders, build peaceful communities, and provide practical care and economic opportunities for people, families, and societies.
+  ourStory: `The Global Peacebuilding, Training and Care Ecosystem (GPTC) is built on a simple truth: sustainable transformation requires interconnected solutions. Human challenges such as conflict, trauma, displacement, unemployment, social division, and inequality cannot be solved by one organization alone.
 
-Global Training Network (GTN) equips people with knowledge and skills through education, leadership development, and train-the-trainer programs. Global Peacebuilding Network (GPN) helps communities live together peacefully through reconciliation, dialogue, and conflict transformation. Amani Care Services Inc. (ACS) improves quality of life through employment, settlement, staffing, and compassionate care.
+That is why three specialized organizations work together as one ecosystem. Like a tree, our ecosystem has strong roots, a growing trunk, expanding branches, and fruits that bring hope and transformation to communities. Global Peacebuilding Network (GPN) forms the roots—rebuilding trust and restoring relationships through reconciliation, dialogue, and trauma healing. Global Training Network (GTN) is the trunk—connecting vision with action by equipping leaders with knowledge and practical skills. Amani Care Services Inc. (ACS) represents the branches and fruits—turning peace and training into practical care, employment support, and community services.
 
-Together, these three branches form a complete pathway: Education → Leadership → Peacebuilding → Employment → Community Well-being → Sustainable Development.`,
+Together, these three branches form a complete pathway: Education → Leadership → Peacebuilding → Employment → Community Well-being → Sustainable Development. Lasting change does not come from one person or one organization alone; it comes when many connected parts work together in a healthy relationship.`,
 
   vision: ecosystemConfig.vision,
 
@@ -38,7 +38,9 @@ Together, these three branches form a complete pathway: Education → Leadership
 
   expectedImpact: `Through our integrated ecosystem, GPTC aims to develop trained and ethical leaders, build peaceful and reconciled communities, create employment and economic growth, and support social inclusion and holistic development.
 
-We envision empowered individuals and families, stronger institutions, and sustainable, resilient societies—transformed through the combined work of GPN, GTN, and ACS.`,
+We envision empowered individuals and families, stronger institutions, and sustainable, resilient societies—transformed through the combined work of GPN, GTN, and ACS.
+
+We believe transformation begins with one person, grows through communities, and changes systems—turning wounded individuals into healers, trained leaders into changemakers, and divided communities into places of peace, dignity, and opportunity.`,
 
   leadershipTeam: [
     {

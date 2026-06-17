@@ -9,7 +9,7 @@ export const ecosystemConfig = {
   mission:
     "To promote human dignity and social transformation through peacebuilding, education, leadership development, employment services, and compassionate care.",
   vision:
-    "To become a global ecosystem that equips leaders, builds peaceful communities, and provides practical care and economic opportunities for people, families, and societies.",
+    "To build a global ecosystem where wounded individuals become healers, trained leaders become changemakers, and communities become places of peace, dignity, justice, and opportunity.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://globaltrainingnetwork.org",
   contact: {
     address: {

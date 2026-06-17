@@ -36,7 +36,8 @@ export const ecosystemHomeConfig = {
   roots: {
     eyebrow: "Our Roots",
     title: "Values That Nourish All We Do",
-    description: "The foundations that sustain peacebuilding, training, and care across our ecosystem.",
+    description:
+      "Like a tree, our ecosystem grows from strong roots—the values, faith, and convictions that nourish peacebuilding, training, and care across everything we do.",
     values: [
       "Peace",
       "Human Dignity",
@@ -69,15 +70,15 @@ export const ecosystemHomeConfig = {
     eyebrow: "Our Organizations",
     title: "Three Branches, One Vision",
     description:
-      "Each organization specializes in a distinct dimension of human transformation—together forming a complete ecosystem.",
+      "Sustainable transformation requires interconnected solutions. Conflict, trauma, displacement, unemployment, and social division cannot be solved by one organization alone—so each specializes in a distinct dimension of human transformation.",
     items: [
       {
         slug: "gpn" as const,
         name: "Global Peacebuilding Network",
         shortName: "GPN",
-        tagline: "Building Peaceful and Just Communities",
+        tagline: "Healing the Past, Transforming the Present, Building the Future",
         description:
-          "Peace, reconciliation, governance, social justice, conflict transformation, dialogue, and trauma healing.",
+          "The roots of our ecosystem. GPN rebuilds trust and restores relationships among individuals, communities, and nations through reconciliation, dialogue, trauma healing, and leadership development.",
         href: "/gpn",
         accentClass: "border-gpn-secondary bg-gpn-secondary/5",
       },
@@ -85,9 +86,9 @@ export const ecosystemHomeConfig = {
         slug: "gtn" as const,
         name: "Global Training Network",
         shortName: "GTN",
-        tagline: "Equipping Leaders and Transforming Minds",
+        tagline: "Equipping People Who Transform Communities",
         description:
-          "Education, research, leadership development, train-the-trainer programs, student consultancy, and workshops.",
+          "The trunk of our ecosystem. GTN connects vision with action—equipping leaders, students, professionals, and organizations with the knowledge and practical skills needed for transformation.",
         href: "/gtn",
         accentClass: "border-gtn-secondary bg-gtn-secondary/5",
       },
@@ -95,9 +96,9 @@ export const ecosystemHomeConfig = {
         slug: "acs" as const,
         name: "Amani Care Services Inc.",
         shortName: "ACS",
-        tagline: "Caring for People. Creating Opportunities.",
+        tagline: "Turning Peace and Training Into Practical Human Support",
         description:
-          "Employment, staffing, newcomer services, hospitality, settlement, language adaptation, and compassionate care.",
+          "The branches and fruits of our ecosystem. “Amani” means “Peace.” ACS turns values into action—supporting newcomers, families, and workers through care, employment support, and community services.",
         href: "/acs",
         accentClass: "border-acs-secondary bg-acs-secondary/5",
       },
@@ -106,7 +107,8 @@ export const ecosystemHomeConfig = {
   impact: {
     eyebrow: "Our Impact",
     title: "Leaves and Fruits",
-    description: "The outcomes we pursue together across communities worldwide.",
+    description:
+      "Like a healthy tree, our ecosystem bears fruit: healed communities, new opportunities, transformed lives, and lasting peace.",
     outcomes: [
       "Peaceful communities",
       "Trained leaders",
@@ -120,9 +122,9 @@ export const ecosystemHomeConfig = {
   },
   flow: {
     eyebrow: "How We Work Together",
-    title: "Education → Leadership → Peacebuilding → Employment → Well-being",
+    title: "Healing → Empowerment → Service → Sustainable Change",
     description:
-      "GTN trains people. GPN helps them become peacebuilders and community leaders. ACS provides employment, care, and practical opportunities.",
+      "GPN restores relationships and lays the foundation of peace. GTN equips people with knowledge, skills, and leadership capacity. ACS turns peace and training into practical services that improve lives.",
     steps: [
       {
         title: "Training (GTN)",
