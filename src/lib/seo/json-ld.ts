@@ -18,7 +18,7 @@ export function buildOrganizationSchema(): JsonLdObject {
     name: ecosystemConfig.name,
     alternateName: ecosystemConfig.shortName,
     url: ecosystemConfig.url,
-    logo: `${ecosystemConfig.url}/assets/gptc_logo2.png`,
+    logo: `${ecosystemConfig.url}/assets/gptc_logo_horizontal_motto.png`,
     description: ecosystemConfig.description,
     ...(socialProfiles.length > 0 ? { sameAs: socialProfiles } : {}),
     subOrganization: Object.values(subsidiaries).map((org) => ({
@@ -47,7 +47,7 @@ export function buildLocalBusinessSchema(): JsonLdObject {
     url: `${ecosystemConfig.url}/contact`,
     telephone: phone,
     email,
-    image: `${ecosystemConfig.url}/assets/gptc_logo2.png`,
+    image: `${ecosystemConfig.url}/assets/gptc_logo_horizontal_motto.png`,
     address: {
       "@type": "PostalAddress",
       streetAddress: address.street,

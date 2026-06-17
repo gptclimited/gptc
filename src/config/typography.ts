@@ -82,46 +82,51 @@ export const typographyConfig = {
 export const logoUsageConfig = {
   sourceFiles: {
     full: {
-      path: "/assets/gptc_logo2.png",
-      dimensions: "1254 × 1254 px",
-      notes: "Vertical lockup — emblem on top, wordmark below. Best for footer, print, and large brand surfaces.",
+      path: "/assets/gptc_logo_horizontal_motto.png",
+      dimensions: "666 × 375 px",
+      notes: "Horizontal lockup with motto — best for light backgrounds, print, and social sharing.",
     },
     horizontal: {
-      path: "/assets/gptc_logo.png",
-      dimensions: "1774 × 887 px",
-      notes: "Horizontal lockup — best format for website headers and nav bars.",
+      path: "/assets/newset_logos/slazzer-preview-w72js.png",
+      dimensions: "835 × 299 px",
+      notes: "Primary header lockup — globe emblem with wordmark, transparent background.",
     },
     emblem: {
-      path: "/assets/gptc_emblem_square.png",
-      dimensions: "Square crop of the circular emblem",
-      notes: "Used in the header and favicon when the full lockup is too small to read.",
+      path: "/assets/canva_logos/gptc_emblem.png",
+      dimensions: "233 × 197 px (transparent PNG)",
+      notes: "Exported from the Canva SVG with background removed — paired with HTML wordmark in the header.",
+    },
+    vertical: {
+      path: "/assets/gptc_emblem_vertical.jpg",
+      dimensions: "832 × 1248 px",
+      notes: "Tall emblem portrait — footer on dark backgrounds and large brand surfaces.",
     },
   },
   display: {
     headerEmblem: {
-      height: "44–48 px (h-11 – h-12)",
+      height: "56–60 px (h-14 – 3.75rem)",
       width: "Auto (square)",
-      asset: "gptc_emblem_square.png",
-      notes: "Circular emblem only — readable at nav-bar scale. Standard practice for stacked logos.",
+      asset: "canva_logos/gptc_emblem.png",
+      notes: "Emblem SVG with HTML wordmark beside it on all breakpoints.",
     },
     headerHorizontal: {
-      height: "48–64 px",
-      width: "180–240 px",
-      asset: "gptc_logo_horizontal_header.png",
-      notes: "Alternative when using the horizontal logo file (motto cropped).",
+      height: "Text at sm:text-sm",
+      width: "Emblem + two-line name",
+      asset: "canva_logos/gptc_emblem.png + HTML",
+      notes: "Header lockup — emblem image plus manually set company name text.",
     },
     footer: {
-      width: "176–208 px (11–13 rem)",
-      height: "Auto",
-      asset: "gptc_logo2.png",
-      notes: "Full vertical lockup with motto.",
+      width: "Emblem + wordmark + tagline",
+      height: "64 px emblem (h-16)",
+      asset: "canva_logos/gptc_emblem.png + HTML",
+      notes: "Emblem on a white badge with company name and gold tagline below — readable on the dark footer.",
     },
     favicon: {
       sizes: [
         { label: "Browser tab", pixels: "32 × 32", file: "src/app/icon.png" },
         { label: "Apple touch icon", pixels: "180 × 180", file: "src/app/apple-icon.png" },
       ],
-      notes: "Favicons use the emblem only — never the full wordmark. Export at 2× (64 px) and downscale for sharpness.",
+      notes: "Favicons derived from newset_logos/x4OHJ.jpg — exported to src/app/icon.png and apple-icon.png.",
     },
   },
 } as const;

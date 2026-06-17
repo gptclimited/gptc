@@ -9,7 +9,7 @@ import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { LogoMeaningSection } from "@/components/sections/logo-meaning";
-// import { LogoUsageSection } from "@/components/sections/logo-usage";
+import { LogoUsageSection } from "@/components/sections/logo-usage";
 import { TypographySection } from "@/components/sections/typography-system";
 import { FeatureGrid } from "@/components/sections/feature-grid";
 import { Hero } from "@/components/sections/hero";
@@ -65,9 +65,7 @@ export default function DesignSystemPage() {
 
       <LogoMeaningSection />
 
-      {/* Logo sizing and placement — restore when final logo assets are ready.
       <LogoUsageSection />
-      */}
 
       <TypographySection />
 

@@ -5,44 +5,84 @@ import type { ImageAsset } from "./types";
  * Update paths here when replacing assets in `/public`.
  */
 export const siteImages = {
-  /** Primary GPTC wordmark — footer, design system, and large brand surfaces */
-  logo: {
-    src: "/assets/gptc_logo2.png",
-    alt: "GPTC — Global Peacebuilding, Training & Care Network. Planting Peace. Equipping Leaders. Transforming Lives.",
-    width: 1254,
-    height: 1254,
-  } satisfies ImageAsset & { width: number; height: number },
-
-  /** Header lockup — logo with the motto line cropped for a shorter nav footprint */
-  logoHeader: {
-    src: "/assets/gptc_logo_header.png",
-    alt: "GPTC — Global Peacebuilding, Training & Care Network",
-    width: 1254,
-    height: 1091,
-  } satisfies ImageAsset & { width: number; height: number },
-
-  /** Emblem mark from the primary logo — favicons and compact placements */
-  logoEmblem: {
-    src: "/assets/gptc_emblem.png",
-    alt: "GPTC emblem — tree, globe, dove, and three subsidiary figures",
-    width: 1254,
-    height: 727,
-  } satisfies ImageAsset & { width: number; height: number },
-
-  /** Square emblem crop — header nav and favicons */
-  logoEmblemSquare: {
-    src: "/assets/gptc_emblem_square.png",
+  /** Favicon source — square emblem mark (exported to src/app/icon.png) */
+  favicon: {
+    src: "/assets/newset_logos/x4OHJ.jpg",
     alt: "GPTC emblem",
-    width: 602,
-    height: 602,
+    width: 1024,
+    height: 1024,
   } satisfies ImageAsset & { width: number; height: number },
 
-  /** Horizontal header lockup from gptc_logo.png (motto cropped) */
-  logoHorizontalHeader: {
-    src: "/assets/gptc_logo_horizontal_header.png",
+  /** Square emblem — header, mobile nav, compact placements */
+  logoEmblem: {
+    src: "/assets/canva_logos/gptc_emblem.png",
+    alt: "GPTC emblem — globe, dove, and laurel wreath",
+    width: 233,
+    height: 197,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** Primary website header lockup — emblem and wordmark (transparent) */
+  logoHeader: {
+    src: "/assets/newset_logos/slazzer-preview-w72js.png",
     alt: "GPTC — Global Peacebuilding, Training & Care Network",
-    width: 1774,
-    height: 692,
+    width: 835,
+    height: 299,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** Horizontal header lockup — emblem + wordmark, no motto */
+  logoHorizontal: {
+    src: "/assets/gptc_logo_horizontal.png",
+    alt: "GPTC — Global Peacebuilding, Training & Care Network",
+    width: 874,
+    height: 286,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** @deprecated Footer uses logoEmblem + HTML wordmark and tagline */
+  logoFooter: {
+    src: "/assets/canva_logos/gptc_emblem.png",
+    alt: "GPTC — Global Peacebuilding, Training & Care Network. Planting Peace. Equipping Leaders. Transforming Lives.",
+    width: 233,
+    height: 197,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** Full horizontal lockup with motto — light backgrounds, OG, and print */
+  logoHorizontalMotto: {
+    src: "/assets/gptc_logo_horizontal_motto.png",
+    alt: "GPTC — Global Peacebuilding, Training & Care Network. Planting Peace. Equipping Leaders. Transforming Lives.",
+    width: 666,
+    height: 375,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** Tall emblem portrait — dark footer and large brand surfaces */
+  logoEmblemVertical: {
+    src: "/assets/gptc_emblem_vertical.jpg",
+    alt: "GPTC emblem — tree, globe, dove, and three subsidiary figures",
+    width: 832,
+    height: 1248,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** Primary logo — vertical emblem for footer previews and brand sections */
+  logo: {
+    src: "/assets/gptc_emblem_vertical.jpg",
+    alt: "GPTC — Global Peacebuilding, Training & Care Network. Planting Peace. Equipping Leaders. Transforming Lives.",
+    width: 832,
+    height: 1248,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** @deprecated Use logoEmblem */
+  logoEmblemSquare: {
+    src: "/assets/gptc_emblem.png",
+    alt: "GPTC emblem",
+    width: 500,
+    height: 500,
+  } satisfies ImageAsset & { width: number; height: number },
+
+  /** @deprecated Use logoHeader */
+  logoHorizontalHeader: {
+    src: "/assets/newset_logos/slazzer-preview-w72js.png",
+    alt: "GPTC — Global Peacebuilding, Training & Care Network",
+    width: 835,
+    height: 299,
   } satisfies ImageAsset & { width: number; height: number },
 
   /** CEO portrait — used on about page leadership */

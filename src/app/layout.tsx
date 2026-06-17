@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     template: `%s | ${ecosystemConfig.shortName}`,
   },
   description: ecosystemConfig.description,
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     type: "website",
     locale: seoConfig.locale,

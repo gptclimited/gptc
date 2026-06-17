@@ -17,10 +17,8 @@ export function LogoUsageSection() {
           <Badge variant="secondary">Logo Sizing</Badge>
           <h2 className="text-gtn-primary">Logo Dimensions &amp; Placement</h2>
           <p className="text-muted-foreground">
-            Website headers need a compact, readable mark. Stacked/vertical logos (like{" "}
-            <code className="text-sm">gptc_logo2.png</code>) cannot show readable text at nav-bar
-            scale — industry standard is to use the emblem only in the header and the full
-            the full lockup in the footer.
+            Website headers pair the emblem SVG with HTML text for a sharp wordmark. Below{" "}
+            <code className="text-sm">sm</code>, only the emblem shows to save space.
           </p>
         </div>
 
@@ -28,19 +26,31 @@ export function LogoUsageSection() {
           <Card>
             <CardHeader>
               <CardTitle className="text-base text-gtn-primary">Header (current)</CardTitle>
-              <CardDescription>{display.headerEmblem.height}</CardDescription>
+              <CardDescription>{display.headerHorizontal.height}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col items-start gap-4">
-              <div className="flex h-16 items-center rounded-lg border border-border bg-background px-4">
+              <div className="flex h-16 items-center gap-3 rounded-lg border border-border bg-background px-4">
                 <Image
-                  src={siteImages.logoEmblemSquare.src}
-                  alt="Header emblem preview"
-                  width={siteImages.logoEmblemSquare.width}
-                  height={siteImages.logoEmblemSquare.height}
-                  className="h-12 w-12 object-contain"
+                  src={siteImages.logoEmblem.src}
+                  alt=""
+                  aria-hidden
+                  width={siteImages.logoEmblem.width}
+                  height={siteImages.logoEmblem.height}
+                  unoptimized
+                  className="h-14 w-14 object-contain"
                 />
+                <div className="hidden flex-col text-left leading-tight sm:flex">
+                  <span className="text-sm font-semibold text-gtn-primary">
+                    Global Peacebuilding,
+                  </span>
+                  <span className="text-sm font-semibold text-gtn-primary">
+                    Training &amp; Care Network
+                  </span>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">{display.headerEmblem.notes}</p>
+              <p className="text-sm text-muted-foreground">
+                {display.headerEmblem.notes} {display.headerHorizontal.notes}
+              </p>
             </CardContent>
           </Card>
 
@@ -50,14 +60,28 @@ export function LogoUsageSection() {
               <CardDescription>{display.footer.width}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col items-start gap-4">
-              <div className="rounded-xl bg-white p-3 shadow-sm">
-                <Image
-                  src={siteImages.logo.src}
-                  alt="Footer logo preview"
-                  width={siteImages.logo.width}
-                  height={siteImages.logo.height}
-                  className="h-auto w-40 object-contain"
-                />
+              <div className="flex max-w-xs items-center gap-3 rounded-xl bg-gtn-primary p-4 shadow-sm">
+                <span className="inline-flex size-20 shrink-0 items-center justify-center rounded-2xl bg-white p-2 shadow-sm">
+                  <Image
+                    src={siteImages.logoEmblem.src}
+                    alt={siteImages.logoEmblem.alt}
+                    width={siteImages.logoEmblem.width}
+                    height={siteImages.logoEmblem.height}
+                    unoptimized
+                    className="size-14 object-contain"
+                  />
+                </span>
+                <div className="flex h-20 max-h-20 flex-col justify-center gap-0.5 text-left leading-tight">
+                  <span className="text-[0.6875rem] font-semibold leading-[1.15] text-white">
+                    Global Peacebuilding,
+                  </span>
+                  <span className="whitespace-nowrap text-[0.6875rem] font-semibold leading-[1.15] text-white">
+                    Training &amp; Care&nbsp;Network
+                  </span>
+                  <span className="line-clamp-3 text-[0.5625rem] leading-[1.2] text-gtn-accent">
+                    Planting Peace. Equipping Leaders. Transforming Lives.
+                  </span>
+                </div>
               </div>
               <p className="text-sm text-muted-foreground">{display.footer.notes}</p>
             </CardContent>
@@ -71,14 +95,14 @@ export function LogoUsageSection() {
             <CardContent className="flex flex-col items-start gap-4">
               <div className="flex items-end gap-4">
                 <Image
-                  src={siteImages.logoEmblemSquare.src}
+                  src={siteImages.favicon.src}
                   alt="Favicon preview"
                   width={32}
                   height={32}
                   className="size-8 object-contain"
                 />
                 <Image
-                  src={siteImages.logoEmblemSquare.src}
+                  src={siteImages.favicon.src}
                   alt="Apple icon preview"
                   width={48}
                   height={48}
@@ -121,20 +145,20 @@ export function LogoUsageSection() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-gtn-primary">Horizontal logo alternative</CardTitle>
-            <CardDescription>{display.headerHorizontal.height}</CardDescription>
+            <CardTitle className="text-gtn-primary">Full logo with motto</CardTitle>
+            <CardDescription>Light backgrounds, print, and social sharing</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex h-16 items-center rounded-lg border border-border bg-background px-4">
+            <div className="rounded-lg border border-border bg-background p-6">
               <Image
-                src={siteImages.logoHorizontalHeader.src}
-                alt="Horizontal header logo preview"
-                width={siteImages.logoHorizontalHeader.width}
-                height={siteImages.logoHorizontalHeader.height}
-                className="h-12 w-auto object-contain"
+                src={siteImages.logoHorizontalMotto.src}
+                alt="Full horizontal logo with motto preview"
+                width={siteImages.logoHorizontalMotto.width}
+                height={siteImages.logoHorizontalMotto.height}
+                className="h-auto w-full max-w-lg object-contain"
               />
             </div>
-            <p className="text-sm text-muted-foreground">{display.headerHorizontal.notes}</p>
+            <p className="text-sm text-muted-foreground">{logoUsageConfig.sourceFiles.full.notes}</p>
           </CardContent>
         </Card>
       </Container>

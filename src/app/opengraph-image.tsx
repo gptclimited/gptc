@@ -10,7 +10,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const logoData = await readFile(join(process.cwd(), "public/assets/gptc_logo2.png"));
+  const logoData = await readFile(
+    join(process.cwd(), "public/assets/gptc_logo_horizontal_motto.png"),
+  );
   const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
 
   return new ImageResponse(
@@ -44,9 +46,9 @@ export default async function OpenGraphImage() {
           <img
             src={logoSrc}
             alt={ecosystemConfig.shortName}
-            width={500}
-            height={500}
-            style={{ width: "auto", height: "100%", maxHeight: 500, objectFit: "contain" }}
+            width={666}
+            height={375}
+            style={{ width: "100%", height: "auto", maxHeight: 420, objectFit: "contain" }}
           />
         </div>
       </div>

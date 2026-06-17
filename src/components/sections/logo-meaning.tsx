@@ -1,6 +1,9 @@
+import Image from "next/image";
+
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Badge } from "@/components/ui/badge";
+import { siteImages } from "@/config/images";
 import { logoBrandStory } from "@/config/logo";
 
 export function LogoMeaningSection() {
@@ -17,6 +20,31 @@ export function LogoMeaningSection() {
           <blockquote className="max-w-2xl border-l-4 border-gtn-accent pl-4 text-sm italic text-muted-foreground">
             {logoBrandStory.oneSentence}
           </blockquote>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="rounded-2xl border border-border bg-muted/40 p-6">
+            <Image
+              src={siteImages.logoHorizontalMotto.src}
+              alt={siteImages.logoHorizontalMotto.alt}
+              width={siteImages.logoHorizontalMotto.width}
+              height={siteImages.logoHorizontalMotto.height}
+              className="h-auto w-full object-contain"
+            />
+            <p className="mt-4 text-center text-sm text-muted-foreground">
+              Primary horizontal lockup with motto — use on light backgrounds with clear space
+              around the mark.
+            </p>
+          </div>
+          <div className="flex items-center justify-center rounded-2xl border border-border bg-gtn-primary p-8">
+            <Image
+              src={siteImages.logoEmblemVertical.src}
+              alt={siteImages.logoEmblemVertical.alt}
+              width={siteImages.logoEmblemVertical.width}
+              height={siteImages.logoEmblemVertical.height}
+              className="h-auto w-48 object-contain"
+            />
+          </div>
         </div>
 
         {/*
