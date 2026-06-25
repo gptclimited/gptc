@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "projectType": "monolith",
+  "services": [
+    {
+      "name": "web",
+      "slug": "web",
+      "kind": "website",
+      "framework": "nextjs",
+      "rootDir": ".",
+      "buildCommand": "next build",
+      "startCommand": "next start",
+      "migrateCommand": null,
+      "internalPort": 3000,
+      "needsDatabase": false,
+      "domains": []
+    }
+  ]
+}

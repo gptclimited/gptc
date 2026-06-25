@@ -37,7 +37,7 @@ export function buildInternalEmailHtml(
             <tr>
               <td style="background:#0B3C5D;color:#ffffff;padding:20px 24px;">
                 <h1 style="margin:0;font-size:20px;">New Website Inquiry</h1>
-                <p style="margin:8px 0 0;font-size:14px;opacity:0.9;">Global Training Network</p>
+                <p style="margin:8px 0 0;font-size:14px;opacity:0.9;">Global Peacebuilding, Training & Care Network</p>
               </td>
             </tr>
             <tr>
@@ -89,7 +89,7 @@ export function buildAutoReplyHtml(data: ContactFormValues): string {
           <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;">
             <tr>
               <td style="background:#0B3C5D;color:#ffffff;padding:20px 24px;">
-                <h1 style="margin:0;font-size:20px;">Thank you for contacting GTN</h1>
+                <h1 style="margin:0;font-size:20px;">Thank you for contacting GPTC</h1>
               </td>
             </tr>
             <tr>
@@ -116,11 +116,11 @@ export function buildAutoReplyHtml(data: ContactFormValues): string {
 }
 
 export function buildInternalEmailSubject(data: ContactFormValues): string {
-  return `[GTN Website] New ${formatInquiryType(data.inquiryType)} from ${data.name}`;
+  return `[GPTC Website] New ${formatInquiryType(data.inquiryType)} from ${data.name}`;
 }
 
 export function buildAutoReplySubject(): string {
-  return `We received your message — Global Training Network`;
+  return `We received your message — Global Peacebuilding, Training & Care Network`;
 }
 
 export function buildInternalEmailText(
