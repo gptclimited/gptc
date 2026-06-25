@@ -16,12 +16,12 @@ The end result is a committed `codeknowledge.deploy.json` file (the "deploy mani
 
 ## Constants (do not change)
 
-| Name                       | Value                                                               |
-| -------------------------- | ------------------------------------------------------------------- |
-| Extension ID               | `codeknowledge.codeknowledge`                                       |
-| Extension download URL     | `https://codeknowledgeapi.thetayoadepetu.com/v1/extension/download` |
-| Extension version info URL | `https://codeknowledgeapi.thetayoadepetu.com/v1/extension/latest`   |
-| Dashboard URL              | `https://codeknowledge.thetayoadepetu.com`                          |
+| Name | Value |
+| --- | --- |
+| Extension ID | `codeknowledge.codeknowledge` |
+| Extension download URL | `https://codeknowledgeapi.thetayoadepetu.com/v1/extension/download` |
+| Extension version info URL | `https://codeknowledgeapi.thetayoadepetu.com/v1/extension/latest` |
+| Dashboard URL | `https://codeknowledge.thetayoadepetu.com` |
 
 ---
 
@@ -104,7 +104,6 @@ package.json / composer.json / requirements.txt ?
 ```
 
 Notes:
-
 - **STATIC** = e.g. a Vite/CRA React site or a static Next.js export. One website service, no database.
 - **MONOLITH** = one app that serves both pages and API and talks to a database (Next.js full-stack, or Laravel). One service. The database is added later in the dashboard, not inside the manifest.
 - **MONOREPO** = multiple deployable apps in one repo. One manifest entry per app you want hosted (skip shared `packages/*` libraries that aren't run on their own).
@@ -121,7 +120,6 @@ The PaaS builds each service as a container behind a router. **Next.js** apps us
 Apply the matching rules below. Make the minimal edits needed; tell the user what you changed.
 
 ### React SPA (Vite or Create React App)
-
 - Ensure `package.json` has a `build` script.
 - Static sites need a start command that serves the built files on `PORT`. If there is no production server:
   - Vite: build outputs to `dist/` → start with `npx serve -s dist -l ${PORT:-3000}`.
@@ -129,13 +127,13 @@ Apply the matching rules below. Make the minimal edits needed; tell the user wha
 - `internalPort`: `3000`, `kind`: `website`.
 
 ### Next.js
-
 - Ensure `package.json` has `build` (`next build`) and `start` (`next start -p ${PORT:-3000}` or just `next start`, which already honors `PORT`).
+- **In `codeknowledge.deploy.json`**, set `buildCommand` and `startCommand` to `null` (recommended) or use package-manager wrappers (`npm run build`, `pnpm run build`). Do **not** copy raw `next build` / `next start` into the manifest — the platform runs those commands inside Docker without your local shell `PATH`.
 - Requires Node 20+. If `package.json` has no `engines.node`, add `"engines": { "node": ">=20" }` (or add a `.nvmrc` containing `20`).
 - **Enable standalone output** in `next.config.js` / `next.config.ts` — the platform builds Next.js with a slim standalone image by default, and the build fails without this:
 
   ```ts
-  // next.config.ts
+  // next.config.ts (single-app / monolith at repo root)
   const nextConfig = {
     output: 'standalone',
     // ...other config
@@ -143,24 +141,39 @@ Apply the matching rules below. Make the minimal edits needed; tell the user wha
   export default nextConfig;
   ```
 
+- **Monorepo apps** (`rootDir` like `apps/web`): also set `outputFileTracingRoot` so standalone bundles include shared workspace packages (`packages/ui`, etc.):
+
+  ```ts
+  // next.config.ts — apps/web/next.config.ts
+  import path from 'path';
+
+  const nextConfig = {
+    output: 'standalone',
+    // Trace files from the repo root (adjust ../ count to match depth of rootDir)
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+    transpilePackages: ['@myorg/ui'], // if you import workspace packages
+  };
+  export default nextConfig;
+  ```
+
+  Rule of thumb: from `apps/web` use `'../../'`; from `services/admin` use `'../../'`; add one `../` per directory level below the repo root.
+
 - If it uses a database (e.g. Prisma), set `migrateCommand` (e.g. `npx prisma migrate deploy`) and mark the app as needing a database in the manifest.
 - `internalPort`: `3000`. `kind`: `website` (use `api` only if it has API routes but no pages).
 
 ### NestJS
-
-- Ensure `build` (`nest build`) and a production start script (`start:prod`, i.e. `node dist/main.js`).
+- Ensure `build` (`nest build`) and a production start script (`start:prod`, i.e. `node dist/main.js`) in **`package.json`**.
+- In the manifest, prefer `buildCommand: null` or `npm run build` / `pnpm run build` — not bare `nest build`.
 - Make `main.ts` listen on the port: `await app.listen(process.env.PORT ?? 3000)`.
 - `internalPort`: `3000`. `kind`: `api`.
 
 ### Laravel (PHP)
-
 - Ensure there is a `composer.json` and an `artisan` file at the app root.
 - Build/start are handled by Nixpacks' PHP provider; you usually do not need to set `buildCommand`/`startCommand` (leave them `null` unless the user has custom needs).
 - If the app uses a database, set `migrateCommand` to `php artisan migrate --force` and mark it as needing a database.
 - `internalPort`: `3000` (Nixpacks serves PHP on `$PORT`). `kind`: `website` (or `api` for an API-only Laravel app).
 
 ### Python (FastAPI / Flask / Django)
-
 - Ensure a `requirements.txt` (or `pyproject.toml`) lists the web framework and an ASGI/WSGI server (e.g. `uvicorn`/`gunicorn`).
 - Set a start command that binds to `PORT`, e.g.:
   - FastAPI: `uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-3000}`
@@ -168,7 +181,6 @@ Apply the matching rules below. Make the minimal edits needed; tell the user wha
 - `internalPort`: `3000`. `kind`: `api` (or `website` if it serves pages).
 
 ### Environment variables (all stacks)
-
 - Create or update `.env.example` with **every** environment variable the app reads (keys only, no real secret values). The dashboard imports these so the user fills them in once. Example:
 
   ```env
@@ -226,8 +238,8 @@ See [the schema reference](#manifest-schema-reference) below for every field. Ke
       "kind": "website",
       "framework": "nextjs",
       "rootDir": ".",
-      "buildCommand": "next build",
-      "startCommand": "next start",
+      "buildCommand": null,
+      "startCommand": null,
       "migrateCommand": "npx prisma migrate deploy",
       "internalPort": 3000,
       "needsDatabase": true,
@@ -250,8 +262,8 @@ See [the schema reference](#manifest-schema-reference) below for every field. Ke
       "kind": "website",
       "framework": "nextjs",
       "rootDir": "apps/web",
-      "buildCommand": "next build",
-      "startCommand": "next start",
+      "buildCommand": null,
+      "startCommand": null,
       "migrateCommand": null,
       "internalPort": 3000,
       "needsDatabase": false,
@@ -263,7 +275,7 @@ See [the schema reference](#manifest-schema-reference) below for every field. Ke
       "kind": "api",
       "framework": "nestjs",
       "rootDir": "apps/api",
-      "buildCommand": "nest build",
+      "buildCommand": null,
       "startCommand": "node dist/main.js",
       "migrateCommand": "npx prisma migrate deploy",
       "internalPort": 3000,
@@ -276,8 +288,8 @@ See [the schema reference](#manifest-schema-reference) below for every field. Ke
       "kind": "website",
       "framework": "nextjs",
       "rootDir": "apps/admin",
-      "buildCommand": "next build",
-      "startCommand": "next start",
+      "buildCommand": null,
+      "startCommand": null,
       "migrateCommand": null,
       "internalPort": 3000,
       "needsDatabase": false,
@@ -334,28 +346,28 @@ You can also re-run this entire skill after a big project change — it will ref
 
 `codeknowledge.deploy.json` (committed at repo root):
 
-| Field         | Type                                   | Required | Description                                   |
-| ------------- | -------------------------------------- | -------- | --------------------------------------------- |
-| `version`     | number                                 | yes      | Manifest schema version. Always `1` for now.  |
-| `projectType` | `"static" \| "monolith" \| "monorepo"` | yes      | The project shape from Step 3. Informational. |
-| `services`    | array                                  | yes      | One entry per app to host.                    |
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `version` | number | yes | Manifest schema version. Always `1` for now. |
+| `projectType` | `"static" \| "monolith" \| "monorepo"` | yes | The project shape from Step 3. Informational. |
+| `services` | array | yes | One entry per app to host. |
 
 Each entry in `services`:
 
-| Field            | Type                 | Required | Description                                                                                                                         |
-| ---------------- | -------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | string               | yes      | Human-friendly service name (e.g. `web`, `api`, `admin`).                                                                           |
-| `slug`           | string               | yes      | URL/identifier-safe name (lowercase, hyphens). Often same as `name`.                                                                |
-| `kind`           | `"website" \| "api"` | yes      | `website` if it serves a UI/pages, `api` if backend-only.                                                                           |
-| `framework`      | string               | yes      | One of `nextjs`, `react`, `vite`, `cra`, `nestjs`, `express`, `laravel`, `fastapi`, `python`, or `auto` to let the platform detect. |
-| `rootDir`        | string               | yes      | Path to the app within the repo. `.` for single-app repos; e.g. `apps/api` in a monorepo.                                           |
-| `buildCommand`   | string \| null       | no       | Build command. `null` lets Nixpacks auto-detect.                                                                                    |
-| `startCommand`   | string \| null       | no       | Production start command (must listen on `PORT`). `null` lets Nixpacks auto-detect.                                                 |
-| `migrateCommand` | string \| null       | no       | One-off command run before start (e.g. DB migrations). `null` if none.                                                              |
-| `internalPort`   | number               | yes      | Port the app listens on inside its container. Default `3000`.                                                                       |
-| `needsDatabase`  | boolean              | yes      | `true` if the app needs a managed database. Provisioning still happens in the dashboard; this flags intent.                         |
-| `needsRedis`     | boolean              | no       | `true` if the app needs managed Redis. Provisioning still happens in the dashboard; this flags intent.                              |
-| `needsStorage`   | boolean              | no       | `true` if the app needs Cloudflare R2 storage. Provisioning still happens in the dashboard; this flags intent.                      |
-| `domains`        | string[]             | no       | Hostnames to route to this service (e.g. `["app.example.com"]`). Empty `[]` if none yet.                                            |
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | yes | Human-friendly service name (e.g. `web`, `api`, `admin`). |
+| `slug` | string | yes | URL/identifier-safe name (lowercase, hyphens). Often same as `name`. |
+| `kind` | `"website" \| "api"` | yes | `website` if it serves a UI/pages, `api` if backend-only. |
+| `framework` | string | yes | One of `nextjs`, `react`, `vite`, `cra`, `nestjs`, `express`, `laravel`, `fastapi`, `python`, or `auto` to let the platform detect. |
+| `rootDir` | string | yes | Path to the app within the repo. `.` for single-app repos; e.g. `apps/api` in a monorepo. |
+| `buildCommand` | string \| null | no | Build command. `null` lets the platform auto-detect (recommended for Next.js). Use `npm run build` / `pnpm run build`, not bare `next build`. |
+| `startCommand` | string \| null | no | Production start command (must listen on `PORT`). `null` auto-detects. Use `npm run start` / `pnpm run start`, or `node …` for compiled output — not bare `next start`. |
+| `migrateCommand` | string \| null | no | One-off command run before start (e.g. DB migrations). `null` if none. |
+| `internalPort` | number | yes | Port the app listens on inside its container. Default `3000`. |
+| `needsDatabase` | boolean | yes | `true` if the app needs a managed database. Provisioning still happens in the dashboard; this flags intent. |
+| `needsRedis` | boolean | no | `true` if the app needs managed Redis. Provisioning still happens in the dashboard; this flags intent. |
+| `needsStorage` | boolean | no | `true` if the app needs Cloudflare R2 storage. Provisioning still happens in the dashboard; this flags intent. |
+| `domains` | string[] | no | Hostnames to route to this service (e.g. `["app.example.com"]`). Empty `[]` if none yet. |
 
 Field values map directly to how the PaaS creates each service, so an accurate manifest means the user just confirms and clicks **Deploy**.
