@@ -114,8 +114,7 @@ export const siteImages = {
   } satisfies Record<"gpn" | "gtn" | "acs", ImageAsset>,
 
   /**
-   * Ecosystem homepage hero slider — up to 4 images aligned with GPTC themes:
-   * training, leadership, peacebuilding, and community care.
+   * Ecosystem homepage hero slider — training and community impact.
    */
   heroSlides: [
     {
@@ -124,18 +123,13 @@ export const siteImages = {
       backgroundPosition: "center center",
     },
     {
-      src: "/assets/insights/leadership.jpg",
-      alt: "Leaders collaborating in a workshop, equipping minds for transformation",
+      src: "/assets/insights/IMG-20260626-WA0000.jpg",
+      alt: "Leadership team gathered for a formal group portrait, representing community stewardship and partnership",
       backgroundPosition: "center center",
     },
     {
-      src: "/assets/insights/peacebuilding.jpg",
-      alt: "Community members in dialogue, building peace and reconciliation",
-      backgroundPosition: "center center",
-    },
-    {
-      src: "/assets/insights/newcomer-integration.jpg",
-      alt: "Welcoming diverse community, representing care and integration services",
+      src: "/assets/insights/IMG-20260626-WA0001.jpg",
+      alt: "Large diverse community group on stage, symbolizing collective leadership and shared mission",
       backgroundPosition: "center center",
     },
   ] as const,

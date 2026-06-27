@@ -48,3 +48,12 @@ export type ValueItem = {
   title: string;
   description: string;
 };
+
+export type ProgramServiceItem = {
+  title: string;
+  /** Shorter label for tab navigation */
+  shortTitle: string;
+  goal: string;
+  activities: readonly string[];
+  outcomes: readonly string[];
+};

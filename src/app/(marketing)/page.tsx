@@ -1,11 +1,14 @@
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { EcosystemFlow } from "@/components/sections/ecosystem-flow";
 import { FeatureGrid } from "@/components/sections/feature-grid";
+import { CoreValuesSlider } from "@/components/sections/core-values-slider";
 import { FounderSpotlight } from "@/components/sections/founder-spotlight";
 import { Hero } from "@/components/sections/hero";
+import { ProgramServicesSlider } from "@/components/sections/program-services-slider";
 import { StatCounter } from "@/components/sections/stat-counter";
 import { SubsidiaryCards } from "@/components/sections/subsidiary-cards";
-import { EcosystemValuesSlider } from "@/components/sections/ecosystem-values-slider";
+import { TestimonialSlider } from "@/components/sections/testimonial-slider";
+import { VisionMissionSlider } from "@/components/sections/vision-mission-slider";
 import { ecosystemHomeConfig } from "@/config/ecosystem/home";
 import { ecosystemConfig } from "@/lib/subsidiaries";
 import { generatePageMetadata } from "@/lib/seo/metadata";
@@ -21,13 +24,14 @@ export default function HomePage() {
   const {
     hero,
     impactStats,
-    roots,
-    trunk,
+    missionVision,
     organizations,
-    impact,
+    programServices,
     flow,
     founder,
     whyEcosystem,
+    coreValues,
+    testimonials,
     ctaBanner,
   } = ecosystemHomeConfig;
 
@@ -54,6 +58,11 @@ export default function HomePage() {
         image={founder.image}
       />
 
+      <VisionMissionSlider
+        vision={missionVision.vision}
+        mission={missionVision.mission}
+      />
+
       <SubsidiaryCards
         id="organizations"
         eyebrow={organizations.eyebrow}
@@ -62,7 +71,14 @@ export default function HomePage() {
         items={organizations.items}
       />
 
-      <EcosystemValuesSlider roots={roots} trunk={trunk} impact={impact} />
+      <ProgramServicesSlider
+        eyebrow={programServices.eyebrow}
+        title={programServices.title}
+        description={programServices.description}
+        items={programServices.items}
+        consultingAreas={programServices.consultingAreas}
+        expectedImpact={programServices.expectedImpact}
+      />
 
       <EcosystemFlow
         eyebrow={flow.eyebrow}
@@ -76,6 +92,19 @@ export default function HomePage() {
         title={whyEcosystem.title}
         description={whyEcosystem.description}
         features={[...whyEcosystem.features]}
+      />
+
+      <CoreValuesSlider
+        eyebrow={coreValues.eyebrow}
+        title={coreValues.title}
+        values={coreValues.items}
+      />
+
+      <TestimonialSlider
+        eyebrow={testimonials.eyebrow}
+        title={testimonials.title}
+        description={testimonials.description}
+        testimonials={[...testimonials.items]}
       />
 
       <CtaBanner

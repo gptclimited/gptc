@@ -26,13 +26,20 @@ type FeatureGridProps = {
   title?: string;
   description?: string;
   features: { title: string; description: string; icon?: string }[];
+  background?: "default" | "muted" | "white";
 };
 
-export function FeatureGrid({ eyebrow, title, description, features }: FeatureGridProps) {
+export function FeatureGrid({
+  eyebrow,
+  title,
+  description,
+  features,
+  background = "white",
+}: FeatureGridProps) {
   const lastRowOffset = features.length % 3 === 2;
 
   return (
-    <Section background="white">
+    <Section background={background}>
       <Container className="space-y-12">
         {(eyebrow || title || description) && (
           <FadeInView className="mx-auto max-w-3xl space-y-4 text-center">
